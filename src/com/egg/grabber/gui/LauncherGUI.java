@@ -168,7 +168,6 @@ class GrabberGUI extends JFrame{
 	}
 }
 
-
 public class LauncherGUI {
 	
 	public static void main(String[] args) {
