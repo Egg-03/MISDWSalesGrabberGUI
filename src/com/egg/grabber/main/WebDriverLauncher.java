@@ -24,9 +24,9 @@ public class WebDriverLauncher {
 	
 	public void dateWiseSales(String year, String month, String start, String end) throws Exception {
 		driver.navigate().to("https://remedy.onlinehealthcaremanagement.com/mis/DateWiseSalesReport/0/0/0");
-		int gap = Integer.valueOf(end)-Integer.valueOf(start)+1;
+		//int gap = Integer.valueOf(end)-Integer.valueOf(start)+1;
 		
-		for(int i=1 ; i<=gap ; i++) {
+		for(int i=Integer.valueOf(start) ; i<=Integer.valueOf(end) ; i++) {
 			//fill start date
 			driver.findElement(By.id("StartDate")).sendKeys(i+"/"+month+"/"+year);
 			//fill end date
