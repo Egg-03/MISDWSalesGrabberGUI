@@ -31,7 +31,7 @@ class GrabberGUI extends JFrame{
 	private JTextArea dumpExceptionLogs;
 	
 	public GrabberGUI() {
-		super("DateWise Sales Report Grabber GUI");
+		super("MISDW Report Grabber v1.01");
 		setLayout(null);
 		
 		addLocations();
@@ -165,20 +165,5 @@ class GrabberGUI extends JFrame{
 		logPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		logPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 		add(logPane);
-	}
-}
-
-public class LauncherGUI {
-	
-	public static void main(String[] args) {
-		try {
-			GrabberGUI g = new GrabberGUI();
-			g.setSize(450, 355);
-			g.setVisible(true);
-			g.setResizable(false);
-			g.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 }
