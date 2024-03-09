@@ -16,14 +16,19 @@ public class Starter{
 					fis.read(data);
 					String uname = new String(data); //try to read data from file
 					if(uname.matches(System.getProperty("user.name"))) { //if data matches username, then launch
-						GrabberGUI g = GrabberGUI.getInstance();
-						g.setVisible(true);
+						new Thread(() -> {
+							GrabberGUI g = GrabberGUI.getInstance();
+							g.setVisible(true);
+						}).start();
 					}
 					else { //this is when the file exists but has the incorrect username
 						try(FileOutputStream fos = new FileOutputStream("C:\\Users\\"+System.getProperty("user.name")+"\\AppData\\Local\\MISDWFirstRun.ini");){
 							fos.write(System.getProperty("user.name").getBytes());
-							FirstRunScreen frs = FirstRunScreen.getInstance();
-							frs.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+							
+							new Thread(()-> {
+								FirstRunScreen frs = FirstRunScreen.getInstance();
+								frs.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+							}).start();
 						}
 					}
 				  }
@@ -31,8 +36,10 @@ public class Starter{
 			else {//this is for when the file does not exist
 				try(FileOutputStream fos = new FileOutputStream("C:\\Users\\"+System.getProperty("user.name")+"\\AppData\\Local\\MISDWFirstRun.ini");){
 					fos.write(System.getProperty("user.name").getBytes());
-					FirstRunScreen frs = FirstRunScreen.getInstance();
-					frs.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					new Thread(()-> {
+						FirstRunScreen frs = FirstRunScreen.getInstance();
+						frs.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					}).start();
 				}
 			}
 				

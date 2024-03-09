@@ -31,17 +31,20 @@ class GrabberGUI extends JFrame{
 	private static final long serialVersionUID = -4697220219932240237L;
 	private static GrabberGUI grabberInstance = null;
 	
-	private JLabel driverPath, dataDownloadPath, startDayLabel, endDayLabel, monthLabel, yearLabel;
-	private JTextField driverPathField, dataDownloadPathField;
-	private JComboBox<String> startDay, endDay, month, year;
-	private JButton fetch;
-	private JTextArea dumpExceptionLogs;
+	private static JLabel driverPath, dataDownloadPath, startDayLabel, endDayLabel, monthLabel, yearLabel;
+	private static JTextField driverPathField, dataDownloadPathField;
+	private static JComboBox<String> startDay, endDay, month, year;
+	private static JButton fetch;
+	private static JTextArea dumpExceptionLogs;
 	
 	//makes it a singleton class to prevent spawning multiple instances of this frame
-	//does not work when your main entry point is FirstRun.java
 	public static GrabberGUI getInstance() {
-		if(grabberInstance==null) 
-			grabberInstance = new GrabberGUI();
+		if(grabberInstance==null) {
+			synchronized(GrabberGUI.class) {
+				if(grabberInstance==null)
+					grabberInstance = new GrabberGUI();
+			}
+		}
 		return grabberInstance;
 	}
 	
@@ -51,6 +54,8 @@ class GrabberGUI extends JFrame{
 		setSize(450, 355);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//DEBUG-NODE-REMOVE-LATER
+		System.out.println(GrabberGUI.class.hashCode());
 		
 		addLocations();
 		addGrabber();
@@ -59,10 +64,6 @@ class GrabberGUI extends JFrame{
 	}
 
 	private void addLocations() {
-//		JSeparator separator = new JSeparator();
-//		separator.setBounds(10, 11, 414, 2);
-//		add(separator);
-		
 		driverPath = new JLabel("Driver Path");
 		driverPath.setBounds(10, 26, 67, 14);
 		getContentPane().add(driverPath);
