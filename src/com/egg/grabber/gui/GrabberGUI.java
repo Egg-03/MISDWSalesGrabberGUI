@@ -15,14 +15,14 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
-import javax.swing.JMenuBar;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
 
 import com.egg.grabber.main.WebDriverLauncher;
 
@@ -31,18 +31,19 @@ class GrabberGUI extends JFrame{
 	private static final long serialVersionUID = -4697220219932240237L;
 	private static GrabberGUI grabberInstance = null;
 	
-	private static JLabel driverPath, dataDownloadPath, startDayLabel, endDayLabel, monthLabel, yearLabel;
-	private static JTextField driverPathField, dataDownloadPathField;
-	private static JComboBox<String> startDay, endDay, month, year;
-	private static JButton fetch;
-	private static JTextArea dumpExceptionLogs;
+	private JLabel driverPath, dataDownloadPath, startDayLabel, endDayLabel, monthLabel, yearLabel;
+	private JTextField driverPathField, dataDownloadPathField;
+	private JComboBox<String> startDay, endDay, month, year;
+	private JButton fetch;
+	private JTextArea dumpExceptionLogs;
 	
 	//makes it a singleton class to prevent spawning multiple instances of this frame
 	public static GrabberGUI getInstance() {
 		if(grabberInstance==null) {
 			synchronized(GrabberGUI.class) {
-				if(grabberInstance==null)
+				if(grabberInstance==null) {
 					grabberInstance = new GrabberGUI();
+				}	
 			}
 		}
 		return grabberInstance;
@@ -54,8 +55,6 @@ class GrabberGUI extends JFrame{
 		setSize(450, 355);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//DEBUG-NODE-REMOVE-LATER
-		System.out.println(GrabberGUI.class.hashCode());
 		
 		addLocations();
 		addGrabber();
@@ -76,7 +75,7 @@ class GrabberGUI extends JFrame{
 		driverPathField.setEditable(false);
 		driverPathField.setBounds(141, 23, 283, 20);
 		driverPathField.setColumns(10);
-		driverPathField.setText("C:\\Users\\"+System.getProperty("user.name")+"\\Downloads\\chromedriver.exe");
+		driverPathField.setText(System.getProperty("user.home")+"\\Downloads\\chromedriver.exe");
 		driverPathField.setToolTipText("Put the chromedriver.exe file in the shown location");
 		getContentPane().add(driverPathField);
 		
@@ -84,7 +83,7 @@ class GrabberGUI extends JFrame{
 		dataDownloadPathField.setEditable(false);
 		dataDownloadPathField.setBounds(141, 48, 283, 20);
 		dataDownloadPathField.setColumns(10);
-		dataDownloadPathField.setText("C:\\Users\\"+System.getProperty("user.name")+"\\Downloads");
+		dataDownloadPathField.setText(System.getProperty("user.home")+"\\Downloads");
 		getContentPane().add(dataDownloadPathField);
 		
 		JButton openDownloadPath = new JButton("Open Downloads");
@@ -93,7 +92,7 @@ class GrabberGUI extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				try {
-					Desktop.getDesktop().open(new File("C:\\Users\\"+System.getProperty("user.name")+"\\Downloads"));
+					Desktop.getDesktop().open(new File(System.getProperty("user.home")+"\\Downloads"));
 				} catch (IOException e1) {
 					dumpExceptionLogs.setText(e1.getMessage());
 				}
@@ -270,5 +269,6 @@ class GrabberGUI extends JFrame{
 				abt.setVisible(true);
 			}
 		});
+		
 	}
 }
