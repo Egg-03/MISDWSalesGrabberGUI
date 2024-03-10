@@ -50,7 +50,7 @@ class GrabberGUI extends JFrame{
 	}
 	
 	private GrabberGUI() {
-		super("MISDW Report Grabber v1.02");
+		super("MISDW Report Grabber v1.03");
 		getContentPane().setLayout(null);
 		setSize(450, 355);
 		setResizable(false);

@@ -14,6 +14,7 @@ public class ExceptionUI extends JFrame{
 	private JTextArea exceptionArea = new JTextArea();
 
 	public ExceptionUI(String msg) {
+		super("MISDWRG Error");
 		setResizable(false);
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 		setSize(490,170);

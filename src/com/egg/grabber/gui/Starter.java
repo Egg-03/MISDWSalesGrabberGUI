@@ -10,6 +10,8 @@ import java.net.SocketException;
 import javax.swing.JFrame;
 import com.egg.grabber.customExceptions.ExceptionUI;
 
+// REWRITE THIS ENTIRE THING OMG THIS IS TRASHHH
+
 public class Starter{
 	public static void main(String args[]) {
 		try{
@@ -28,10 +30,10 @@ public class Starter{
 								g.setVisible(true);
 								Thread.currentThread().join();
 							} catch (SocketException se) {
-								ExceptionUI ecp = new ExceptionUI("An instance of this application is already running");
+								ExceptionUI ecp = new ExceptionUI("An instance of this application is already running. Please close the previous instance to start a new instance.");
 								ecp.setVisible(true);
 							} catch (Exception e) {
-								ExceptionUI ecp = new ExceptionUI("An unknown error has occured");
+								ExceptionUI ecp = new ExceptionUI("An unknown error has occured with the following code : SERVER_SOCKET_ERROR");
 								ecp.setVisible(true);
 							}
 							
@@ -46,7 +48,14 @@ public class Starter{
 								frs.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 							}).start();
 						}
+						catch(Exception e) {
+							ExceptionUI ecp = new ExceptionUI(e.getMessage());
+							ecp.setVisible(true);
+						}
 					}
+				  }catch(Exception e) {
+					  ExceptionUI ecp = new ExceptionUI(e.getMessage());
+					  ecp.setVisible(true);
 				  }
 				}
 			else {//this is for when the file does not exist
@@ -56,11 +65,15 @@ public class Starter{
 						FirstRunScreen frs = FirstRunScreen.getInstance();
 						frs.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					}).start();
+				} catch (Exception e) {
+					ExceptionUI ecp = new ExceptionUI(e.getMessage());
+					ecp.setVisible(true);
 				}
 			}
 				
 		}catch(Exception e) {
-			e.printStackTrace();
+			ExceptionUI ecp = new ExceptionUI(e.getMessage());
+			ecp.setVisible(true);
 		}
 	}
 }

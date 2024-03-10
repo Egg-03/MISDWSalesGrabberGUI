@@ -38,7 +38,7 @@ class AboutFrame extends JFrame {
 		aboutBorder.add(description);
 		description.setWrapStyleWord(true);
 		description.setLineWrap(true);
-		description.setText("A nifty little GUI Toolkit programmed to use Selenium WebDriver to grab daily, monthly and yearly Sales Data from Remedy Medical Services' Online Management Platform");
+		description.setText("A Free and Open Source (FOSS) GUI Toolkit programmed to use Selenium WebDriver to grab daily, monthly and yearly Sales Data from Remedy Medical Services' Online Management Platform");
 		description.setBackground(new Color(240, 240, 240));
 	}
 }
