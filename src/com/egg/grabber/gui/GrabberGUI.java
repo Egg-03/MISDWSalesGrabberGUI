@@ -214,15 +214,9 @@ class GrabberGUI extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				try {
 					Desktop.getDesktop().browse(new URI("https://github.com/Egg-03/MISDWSalesGrabberGUI/releases"));
-				} catch(NullPointerException e1) {
+				} catch(NullPointerException | UnsupportedOperationException | IOException | URISyntaxException e1) {
 					dumpExceptionLogs.setText(e1.getMessage());
-				} catch (UnsupportedOperationException e1) {
-					dumpExceptionLogs.setText(e1.getMessage());
-				} catch (IOException e1) {
-					dumpExceptionLogs.setText(e1.getMessage());
-				} catch (URISyntaxException e1) {
-					dumpExceptionLogs.setText(e1.getMessage());
-				}
+				}   
 			}
 		});
 		
@@ -231,15 +225,9 @@ class GrabberGUI extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				try {
 					Desktop.getDesktop().browse(new URI("https://googlechromelabs.github.io/chrome-for-testing/"));
-				} catch(NullPointerException e1) {
+				} catch(NullPointerException | UnsupportedOperationException | IOException | URISyntaxException e1) {
 					dumpExceptionLogs.setText(e1.getMessage());
-				} catch (UnsupportedOperationException e1) {
-					dumpExceptionLogs.setText(e1.getMessage());
-				} catch (IOException e1) {
-					dumpExceptionLogs.setText(e1.getMessage());
-				} catch (URISyntaxException e1) {
-					dumpExceptionLogs.setText(e1.getMessage());
-				}
+				}   
 			}
 		});
 		
@@ -248,15 +236,9 @@ class GrabberGUI extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				try {
 					Desktop.getDesktop().browse(new URI("https://remedy.onlinehealthcaremanagement.com/"));
-				} catch(NullPointerException e1) {
+				} catch(NullPointerException | UnsupportedOperationException | IOException | URISyntaxException e1) {
 					dumpExceptionLogs.setText(e1.getMessage());
-				} catch (UnsupportedOperationException e1) {
-					dumpExceptionLogs.setText(e1.getMessage());
-				} catch (IOException e1) {
-					dumpExceptionLogs.setText(e1.getMessage());
-				} catch (URISyntaxException e1) {
-					dumpExceptionLogs.setText(e1.getMessage());
-				}
+				}   
 			}
 		});
 		
