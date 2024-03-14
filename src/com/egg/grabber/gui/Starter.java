@@ -8,7 +8,6 @@ import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.SocketException;
 
-import javax.swing.JFrame;
 import com.egg.grabber.customExceptions.ExceptionUI;
 
 // REWRITE THIS ENTIRE THING OMG THIS IS TRASHHH
@@ -37,8 +36,8 @@ public class Starter{
 								ExceptionUI ecp = new ExceptionUI("An unknown thread error has occured with the following stacktrace: "+e.getMessage());
 								ecp.setVisible(true);
 								Thread.currentThread().interrupt();
-							} catch (IOException e) {
-								ExceptionUI ecp = new ExceptionUI("An unknown IO error has occured with the following stacktrace : "+e.getMessage());
+							} catch (IOException | SecurityException | IllegalArgumentException e ) {
+								ExceptionUI ecp = new ExceptionUI("The following error has occured :- "+e.getMessage());
 								ecp.setVisible(true);
 							}
 						}).start();
@@ -49,7 +48,7 @@ public class Starter{
 							
 							new Thread(()-> {
 								FirstRunScreen frs = FirstRunScreen.getInstance();
-								frs.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+								frs.setVisible(true);
 							}).start();
 						}
 						catch(Exception e) {
@@ -67,7 +66,7 @@ public class Starter{
 					fos.write(System.getProperty("user.name").getBytes());
 					new Thread(()-> {
 						FirstRunScreen frs = FirstRunScreen.getInstance();
-						frs.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+						frs.setVisible(true);
 					}).start();
 				} catch (Exception e) {
 					ExceptionUI ecp = new ExceptionUI(e.getMessage());

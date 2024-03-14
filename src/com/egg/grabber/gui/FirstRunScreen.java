@@ -26,7 +26,6 @@ class FirstRunScreen extends JFrame{
 		setAlwaysOnTop(true);
 		setResizable(false);
 		setSize(700,262);
-		setVisible(true);
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "FIRST RUN INSTRUCTIONS", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));

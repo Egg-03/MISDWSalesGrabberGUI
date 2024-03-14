@@ -23,6 +23,7 @@ import javax.swing.JSeparator;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.WindowConstants;
 
 import com.egg.grabber.main.WebDriverLauncher;
 
@@ -52,7 +53,7 @@ class GrabberGUI extends JFrame{
 		getContentPane().setLayout(null);
 		setSize(450, 355);
 		setResizable(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		
 		addLocations();
 		addGrabber();
