@@ -3,6 +3,7 @@ package com.egg.grabber.gui;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.SocketException;
@@ -13,12 +14,12 @@ import com.egg.grabber.customExceptions.ExceptionUI;
 // REWRITE THIS ENTIRE THING OMG THIS IS TRASHHH
 
 public class Starter{
-	public static void main(String args[]) {
+	public static void main(String[] args) {
 		try{
 			File f = new File(System.getProperty("user.home")+"\\AppData\\Local\\MISDWFirstRun.ini");
 			if(f.exists() && !f.isDirectory()) { //if the file exists and is not a directory
 				try(FileInputStream fis = new FileInputStream(System.getProperty("user.home")+"\\AppData\\Local\\MISDWFirstRun.ini");){
-					byte data[] = new byte[fis.available()];
+					byte[] data = new byte[fis.available()];
 					fis.read(data);
 					String uname = new String(data); //try to read data from file
 					if(uname.matches(System.getProperty("user.name"))) { //if data matches username, then launch
@@ -32,11 +33,14 @@ public class Starter{
 							} catch (SocketException se) {
 								ExceptionUI ecp = new ExceptionUI("An instance of this application is already running. Please close the previous instance to start a new instance.");
 								ecp.setVisible(true);
-							} catch (Exception e) {
-								ExceptionUI ecp = new ExceptionUI("An unknown error has occured with the following code : SERVER_SOCKET_ERROR");
+							} catch (InterruptedException e) {
+								ExceptionUI ecp = new ExceptionUI("An unknown thread error has occured with the following stacktrace: "+e.getMessage());
+								ecp.setVisible(true);
+								Thread.currentThread().interrupt();
+							} catch (IOException e) {
+								ExceptionUI ecp = new ExceptionUI("An unknown IO error has occured with the following stacktrace : "+e.getMessage());
 								ecp.setVisible(true);
 							}
-							
 						}).start();
 					}
 					else { //this is when the file exists but has the incorrect username
