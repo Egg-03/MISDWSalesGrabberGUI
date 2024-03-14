@@ -12,7 +12,7 @@ import com.egg.grabber.customExceptions.InvalidRangeException;
 public class WebDriverLauncher {
 	private WebDriver driver;
 	
-	public WebDriverLauncher(String driverPath, String downloadPath) throws Exception {
+	public WebDriverLauncher(String driverPath, String downloadPath) {
 		System.setProperty("webdriver.chrome.driver", driverPath);
 		HashMap<String, Object> chromePrefs = new HashMap<>();
 		chromePrefs.put("safebrowsing.enabled", true);
@@ -24,12 +24,13 @@ public class WebDriverLauncher {
 		driver = new ChromeDriver(coption);
 	}
 	
-	public void dateWiseSales(String year, String month, String start, String end) throws Exception {
-		if(Integer.valueOf(start)>Integer.valueOf(end)) {
+	public void dateWiseSales(String year, String month, String start, String end) throws InvalidRangeException {
+		if(Integer.parseInt(start)>Integer.parseInt(end)) {
 			throw new InvalidRangeException("Begin Range has to be smaller than the End Range");
-		}
+			}
+		
 		driver.navigate().to("https://remedy.onlinehealthcaremanagement.com/mis/DateWiseSalesReport/0/0/0");
-		for(int i=Integer.valueOf(start) ; i<=Integer.valueOf(end) ; i++) {
+		for(int i=Integer.parseInt(start) ; i<=Integer.parseInt(end) ; i++) {
 			//fill start date
 			driver.findElement(By.id("StartDate")).sendKeys(i+"/"+month+"/"+year);
 			//fill end date
