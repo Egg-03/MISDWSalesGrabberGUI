@@ -39,15 +39,13 @@ class GrabberGUI extends JFrame{
 	
 	//makes it a singleton class to prevent spawning multiple instances of this frame
 	public static GrabberGUI getInstance() {
-		if(grabberInstance==null) {
-			synchronized(GrabberGUI.class) {
-				if(grabberInstance==null) {
-					grabberInstance = new GrabberGUI();
-				}	
-			}
+		synchronized(GrabberGUI.class){
+		if(grabberInstance==null)
+			grabberInstance = new GrabberGUI();		
 		}
 		return grabberInstance;
-	}
+		}
+		
 	
 	private GrabberGUI() {
 		super("MISDW Report Grabber v1.03");
